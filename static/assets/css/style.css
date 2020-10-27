@@ -7,6 +7,39 @@ nav.navbar {
     background-color: #242e37 !important;
 }
 
+main {
+    display: flex !important;
+}
+
+.file-tree {
+    padding: 10px;
+    color: #eeeeee;
+    background-color: #242e37;
+}
+
+.file-tree > .project-name {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.file-tree ul {
+    list-style: none;
+    padding-left: 16px;
+}
+
+.file-tree li > a {
+    color: #eeeeee;
+    text-decoration: none;
+}
+
+.file-tree li > a > i {
+    margin-right: 6px;
+}
+
+.editor {
+    padding: 0 !important;
+}
+
 textarea {
     display: inline-block;
     background: 0 0;

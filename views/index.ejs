@@ -1,7 +1,35 @@
 <%- include('header') %>
 
-<form action="./actions/create.php" method="POST" id="create">
-    <textarea id="paste" name="paste" oninput="auto_grow(this);" spellcheck="false" maxlength="1000000" required="" style="height: 622px;"></textarea>
-</form>
+<div class="file-tree col-lg-2">
+    <div class="project-name">MON PROJET DE C</div>
+    <ul>
+        <li>
+            <a href="#"><i class="fas fa-folder-open"></i>includes</a>
+            <ul>
+                <li>
+                    <a href="#"><i class="far fa-file"></i>display.h</a>
+                </li>
+                <li>
+                    <a href="#"><i class="far fa-file"></i>utils.h</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#"><i class="far fa-file"></i>main.c</a>
+        </li>
+        <li>
+            <a href="#"><i class="far fa-file"></i>main.h</a>
+        </li>
+        <li>
+            <a href="#"><i class="far fa-file"></i>Makefile</a>
+        </li>
+    </ul>
+</div>
+
+<div class="editor col">
+    <form action="./actions/create.php" method="POST" id="create">
+        <textarea id="paste" name="paste" oninput="auto_grow(this);" spellcheck="false" maxlength="1000000" required="" style="height: 622px;"></textarea>
+    </form>
+</div>
 
 <%- include('footer') %>
