@@ -1,0 +1,25 @@
+{
+  "name": "collab",
+  "version": "1.0.0",
+  "description": "Editeur de code en ligne collaboratif",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ythepaut/collab.git"
+  },
+  "author": "Yohann THEPAUT <contact@ythepaut.com> (ythepaut)",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/ythepaut/collab/issues"
+  },
+  "homepage": "https://github.com/ythepaut/collab#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "socketio": "^1.0.0"
+  }
+}
