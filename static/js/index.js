@@ -1,5 +1,5 @@
 // codemirror setup
-window.addEventListener("load", (event) => {
+window.addEventListener("load", () => {
 
     let editor = CodeMirror.fromTextArea(document.querySelector(".editor > textarea"), {
         lineNumbers: true,
