@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* TODO fix y window overflow */
+html, body, main {
+    height: 100%;
+}
+
+nav.navbar {
+    background-color: #242e37 !important;
+}
+
+main {
+    display: flex !important;
+}
+
+.file-tree {
+    padding: 10px;
+    color: #eeeeee;
+    background-color: #242e37;
+}
+
+.file-tree > .project-name {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.file-tree ul {
+    list-style: none;
+    padding-left: 16px;
+}
+
+.file-tree li > a {
+    color: #eeeeee;
+    text-decoration: none;
+}
+
+.file-tree li > a > i {
+    margin-right: 6px;
+}
+
+.editor {
+    display: flex;
+    padding: 0 !important;
+    overflow-y: hidden;
+}
+
+.editor > textarea {
+    display: inline-block;
+    background: 0 0;
+    border: 0;
+    color: #ffffff;
+    background-color: #1e272e;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    resize: none !important;
+    font-size: 13px;
+}
+
+.CodeMirror {
+    height: 100%;
+    width: 100%;
+}
