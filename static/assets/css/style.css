@@ -3,6 +3,11 @@
     padding: 0;
 }
 
+/* TODO fix y window overflow */
+html, body, main {
+    height: 100%;
+}
+
 nav.navbar {
     background-color: #242e37 !important;
 }
@@ -37,19 +42,26 @@ main {
 }
 
 .editor {
+    display: flex;
     padding: 0 !important;
+    overflow-y: hidden;
 }
 
-textarea {
+.editor > textarea {
     display: inline-block;
     background: 0 0;
     border: 0;
-    color: #fff;
+    color: #ffffff;
     background-color: #1e272e;
     padding: 0;
     width: 100%;
     height: 100%;
     outline: none;
-    resize: none;
+    resize: none !important;
     font-size: 13px;
+}
+
+.CodeMirror {
+    height: 100%;
+    width: 100%;
 }
