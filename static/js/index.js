@@ -2,12 +2,6 @@ let editor;
 let textAreaEditor;
 let socket;
 
-// TODO remove temp vars
-let lock = false;
-let collabContent = {
-    text : ""
-}
-
 
 // codemirror setup
 window.addEventListener("load", () => {
@@ -44,16 +38,17 @@ window.addEventListener("load", () => {
 
     // socket io
 
-    socket = io();
+    socket = io.connect();
 
 
     // editor listener
-    editor.on("change", () => {
-        if (!lock) {
-            socket.emit("update", {text : editor.getValue()});
-        }
+    editor.on("change", (i, op) => {
+        socket.emit("update", op);
+        socket.emit("resync", editor.getValue());
     });
-    //TODO correct cursor column
+
+
+    // socket listeners
 
     // debug message
     socket.on("debug", (message) => {
@@ -62,17 +57,12 @@ window.addEventListener("load", () => {
 
     // new change received from collaborator
     socket.on("update", (data) => {
-        collabContent.text = data.text;
-        lock = true;
-        editor.setValue(data.text);
-        lock = false;
+        editor.replaceRange(data.text, data.from, data.to);
     });
 
-    // sync on connect
+    // sync editor value
     socket.on("sync", (data) => {
-        collabContent.text = data.text;
-        editor.setValue(data.text);
+        editor.setValue(data.body);
     });
 
 });
-
