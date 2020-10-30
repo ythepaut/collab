@@ -1,7 +1,14 @@
+let editor;
+let textAreaEditor;
+let socket;
+
+
 // codemirror setup
 window.addEventListener("load", () => {
 
-    let editor = CodeMirror.fromTextArea(document.querySelector(".editor > textarea"), {
+    textAreaEditor = document.querySelector(".editor > textarea");
+
+    editor = CodeMirror.fromTextArea(textAreaEditor, {
         lineNumbers: true,
         viewportMargin: Infinity,
         theme: "dracula",
@@ -26,7 +33,36 @@ window.addEventListener("load", () => {
             cm.replaceSelection(spaces, "end", "+input");
         }
     });
+
+
+
+    // socket io
+
+    socket = io.connect();
+
+
+    // editor listener
+    editor.on("change", (i, op) => {
+        socket.emit("update", op);
+        socket.emit("resync", editor.getValue());
+    });
+
+
+    // socket listeners
+
+    // debug message
+    socket.on("debug", (message) => {
+        console.log(message);
+    });
+
+    // new change received from collaborator
+    socket.on("update", (data) => {
+        editor.replaceRange(data.text, data.from, data.to);
+    });
+
+    // sync editor value
+    socket.on("sync", (data) => {
+        editor.setValue(data.body);
+    });
+
 });
-
-
-// TODO socket io communication
