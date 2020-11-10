@@ -21,6 +21,10 @@ app.get("/", (req, res) => {
 });
 
 
+// database connection
+require("./helper/db")(() => {});
+
+
 // TODO remove temp var
 let body = "";
 
