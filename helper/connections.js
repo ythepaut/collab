@@ -1,6 +1,10 @@
 module.exports = (io, db) => {
-    
-    let file = "";
+
+    let body = "";
+    const selectQuery = "SELECT body FROM files WHERE id = 1;";
+    db.query(selectQuery, (err, res, fields) => {
+        body = res[0].body;
+    });
 
     let socks = [];
 
@@ -20,6 +24,9 @@ module.exports = (io, db) => {
 
         socket.on("resync", (data) => {
             body = data;
+            const updateQuery = "UPDATE files SET body = '" + body + "' WHERE id = 1;"; //TODO prevent SQL injections
+            db.query(updateQuery, (err, res) => {
+            });
         })
 
         // handle collab update
