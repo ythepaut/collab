@@ -24,19 +24,18 @@ module.exports = (callback) => {
             const createTableQuery = "CREATE TABLE IF NOT EXISTS files (" +
                 "id INT PRIMARY KEY NOT NULL AUTO_INCREMENT," +
                 "body TEXT);";
-            con.query(createTableQuery, (err, res) => {
-                // TODO handle errors
+            con.query(createTableQuery, () => {
             });
 
 
             // --- TODO (TO REMOVE) single file management
             const selectQuery = "SELECT body FROM files WHERE id = 1;";
-            con.query(selectQuery, (err, res, fields) => {
+            con.query(selectQuery, (err, res) => {
                 if (res.length === 0) {
                     const tempTruncateQuery = "TRUNCATE TABLE files;";
-                    con.query(tempTruncateQuery, (err, res) => {
+                    con.query(tempTruncateQuery, () => {
                         const tempInsertQuery = "INSERT INTO files (body) VALUES (\"\");";
-                        con.query(tempInsertQuery, (err, res) => {
+                        con.query(tempInsertQuery, () => {
                             callback(con);
                         });
                     });

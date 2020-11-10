@@ -2,7 +2,7 @@ module.exports = (io, db) => {
 
     let body = "";
     const selectQuery = "SELECT body FROM files WHERE id = 1;";
-    db.query(selectQuery, (err, res, fields) => {
+    db.query(selectQuery, (err, res) => {
         body = res[0].body;
     });
 
@@ -25,7 +25,7 @@ module.exports = (io, db) => {
         socket.on("resync", (data) => {
             body = data;
             const updateQuery = "UPDATE files SET body = '" + body + "' WHERE id = 1;"; //TODO prevent SQL injections
-            db.query(updateQuery, (err, res) => {
+            db.query(updateQuery, () => {
             });
         })
 
