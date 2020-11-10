@@ -2,9 +2,9 @@
 
 Collab est un outil qui permet l'édition de code en ligne et en collaboration.
 
-**Site Internet**
+**Site de développement (temporaire)**
 
-https://collab.ythepaut.com/
+http://vps.ythepaut.com:8000/
 
 
 # A propos
