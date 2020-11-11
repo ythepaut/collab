@@ -1,11 +1,15 @@
-module.exports = (io, db) => {
+module.exports = (io, db, callback) => {
 
-    let body = "";
+    // body init
+    let file = {body : ""};
     const selectQuery = "SELECT body FROM files WHERE id = 1;";
     db.query(selectQuery, (err, res) => {
-        body = res[0].body;
+        file.body = res[0].body;
+        callback(file);
     });
 
+
+    // connections
     let socks = [];
 
     // creating socket.io listeners
@@ -20,13 +24,10 @@ module.exports = (io, db) => {
         console.log("User " + socket.id + " joined.");
 
         // sending collab content
-        socket.emit("sync", {body : body});
+        socket.emit("sync", {body : file.body});
 
         socket.on("resync", (data) => {
-            body = data;
-            const updateQuery = "UPDATE files SET body = '" + body + "' WHERE id = 1;"; //TODO prevent SQL injections
-            db.query(updateQuery, () => {
-            });
+            file.body = data;
         })
 
         // handle collab update

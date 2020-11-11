@@ -22,7 +22,15 @@ app.get("/", (req, res) => {
 
 
 // app initialization (database + socket)
-require("./helper/db")((db) => require("./helper/connections")(io, db));
+require("./helper/db")((db) => require("./helper/connections")(io, db, (file) => {
+    // TODO move from server.js
+    function syncToDB() {
+        const updateQuery = "UPDATE files SET body = '" + file.body + "' WHERE id = 1;"; //TODO prevent SQL injections
+        db.query(updateQuery);
+        console.log("File synchronized.");
+    }
+    setInterval(syncToDB, 300000);
+}));
 
 
 // starting server
