@@ -20,8 +20,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-        working-directory: ./src
-    - run: npm ci
+    - name: Run CI
       working-directory: ./src
-    - run: npm run build --if-present
+      run: npm ci
+    - name: Run Build
       working-directory: ./src
+      run: npm run build --if-present
+
