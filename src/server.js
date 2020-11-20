@@ -11,14 +11,8 @@ let app = express(),
 app.set("view engine", "ejs");
 
 
-// setting static folder
-app.use(express.static(path.join(__dirname, "static")));
-
-
-// creating routes
-app.get("/", (req, res) => {
-    res.render("index");
-});
+// setting routes
+new (require("./helper/service"))(app, express, path);
 
 
 // app initialization (database + socket)
